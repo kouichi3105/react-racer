@@ -3,7 +3,7 @@ from flask import Flask,render_template,request
 from flask_cors import CORS
 
 #Flaskオブジェクトの生成
-app = Flask(__name__, static_folder="../build/static", template_folder="../build")
+app = Flask(__name__, static_folder="../react/build/static", template_folder="../react/build")
 CORS(app)
 
 
