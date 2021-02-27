@@ -11,13 +11,15 @@ CORS(app)
 def index():
     return render_template("index.html")
 
-@app.route("/get")
-def hello():
-    return "Get Data"
+@app.route("/speed/<int:speed>", methods=["POST"])
+def speed(speed):
+    print(speed)
+    return 'Speed: %d' % speed
 
-@app.route("/post", methods=["POST"])
-def data():
-    return request.get_data()
+@app.route("/steering/<int:steering>", methods=["POST"])
+def steering(steering):
+    print(steering)
+    return 'Steering: %d' % steering
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)

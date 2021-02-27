@@ -13,6 +13,30 @@
   }
 }
 
+.form {
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #C0C0C0;
+}
+
+.reset {
+  width: 100px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  font-size: 2em;
+}
+
+.send {
+  width: 100px;
+  height: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 2em;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

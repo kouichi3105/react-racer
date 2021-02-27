@@ -4,50 +4,52 @@ import { Button } from '@material-ui/core';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-
-const server = 'http://localhost:5000/get';
-const post_server = 'http://localhost:5000/post';
+import TextField from '@material-ui/core/TextField';
 
 const style = { width: 400, margin: 50};
 
-//function App() {
 export class App extends React.Component {
 
   constructor(props){
     super();
     this.state = {
-      text: '',
       post: '',
       sliderValues: 0,
-      st_value: 50
+      st_value: 50,
+      address: ''
     };
 
-    this.handleClick = this.handleClick.bind(this);
-    this.handleClick2 = this.handleClick2.bind(this);
     this.onReset = this.onReset.bind(this);
+    this.onSend = this.onSend.bind(this);
   }
 
-  handleClick() {
-    fetch(server, {
-      method: "GET",
-    }).then(response => response.text())
-    .then(text => {
-      this.setState({text: text});
-    });    
-  }
-
-  handleClick2() {
-    fetch(post_server, {
-      method: "POST",
-      body: "Post Data"
-    }).then(response => response.text())
-    .then(text => {
-      this.setState({post: text});
-    });    
+  handleChange_address = (event) => {
+    this.setState({
+      address: event.target.value
+    });
   }
 
   onReset() {
-    this.setState({text: '',post: '', value: 0, st_value: 50});
+    this.setState({post: '', value: 0, st_value: 50});
+  }
+
+  onSend() {
+    // Speed値設定
+    fetch(this.state.address + '/speed/' + String(this.state.value), {
+      method: "POST",
+      body: "Speed"
+    }).then(response => response.text())
+    .then(text => {
+      // this.setState({post: text});
+    });
+    // Steering値設定
+    fetch(this.state.address + '/steering/' + String(this.state.st_value), {
+      method: "POST",
+      body: "Steering"
+    }).then(response => response.text())
+    .then(text => {
+      // this.setState({post: text});
+    });
   }
 
   onSliderChange = (value) => {
@@ -57,7 +59,14 @@ export class App extends React.Component {
   }
 
   onAfterChange = (value) => {
-    console.log(value);
+    // Speed値設定
+    fetch(this.state.address + '/speed/' + String(value), {
+      method: "POST",
+      body: "Speed"
+    }).then(response => response.text())
+    .then(text => {
+      this.setState({post: text});
+    });
   }
 
   onStSliderChange = (st_value) => {
@@ -67,13 +76,22 @@ export class App extends React.Component {
   }
 
   onStAfterChange = (st_value) => {
-    console.log(st_value);
+    // Steering値設定
+    fetch(this.state.address + '/steering/' + String(st_value), {
+      method: "POST",
+      body: "Steering"
+    }).then(response => response.text())
+    .then(text => {
+      this.setState({post: text});
+    });
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
+          <title>React Racer</title>
+          <h1>React Racer</h1>
           <div style={style}>
             <p>Speed</p>
             <Slider 
@@ -89,11 +107,18 @@ export class App extends React.Component {
             />
             <DriveEtaIcon />
           </div>
-          <Button variant="contained" color="primary" onClick={this.handleClick}>Get Data</Button>
-          <p>{this.state.text}</p>
-          <Button variant="contained" color="secondary" onClick={this.handleClick2}>Post Data</Button>
+          <form className="form" noValidate autoComplete="off">
+            <TextField 
+              id="standard-basic" 
+              label="Address"
+              onChange={this.handleChange_address}
+            />
+          </form>
           <p>{this.state.post}</p>
-          <Button variant="contained" onClick={this.onReset}>Reset</Button>
+          <div>
+            <Button className="reset" variant="contained" color="secondary" onClick={this.onReset}>Reset</Button>
+            <Button className="send" variant="contained" color="primary" onClick={this.onSend}>Send</Button>
+          </div>
         </header>
       </div>
     );
