@@ -5,7 +5,7 @@ jetracerをスマホから操作するためのもの
 
 (Reactを勉強するために製作)
 
-https://github.com/kouichi3105/react-racer/issues/1#issue-818130632
+https://user-images.githubusercontent.com/39552715/109409233-51f57300-79d4-11eb-976d-86756b96df8c.jpg
 
 ## 用意するもの
 
