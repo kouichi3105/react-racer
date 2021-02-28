@@ -13,6 +13,8 @@ jetracerをスマホから操作するためのもの
 
 ## 使い方
 
+jetson上で下記コマンドを実行
+
 ```
 git clone https://github.com/kouichi3105/react-racer
 
