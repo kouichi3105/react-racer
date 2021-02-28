@@ -1,12 +1,8 @@
-#Flaskとrender_template（HTMLを表示させるための関数）をインポート
 from flask import Flask,render_template,request
 from flask_cors import CORS
-
-#jetracer
 from jetracer.nvidia_racecar import NvidiaRacecar
 car = NvidiaRacecar()
 
-#Flaskオブジェクトの生成
 app = Flask(__name__, static_folder="../react/build/static", template_folder="../react/build")
 CORS(app)
 
