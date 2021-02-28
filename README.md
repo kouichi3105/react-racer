@@ -5,6 +5,8 @@ jetracerをスマホから操作するためのもの
 
 (Reactを勉強するために製作)
 
+https://github.com/kouichi3105/react-racer/issues/1#issue-818130632
+
 ## 用意するもの
 
 ・jetracer (https://github.com/NVIDIA-AI-IOT/jetracer)
